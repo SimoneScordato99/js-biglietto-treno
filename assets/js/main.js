@@ -40,8 +40,19 @@ function biglietto() {
     console.log(eta)
     document.getElementById("iTuoiKm").innerHTML = `<p>devi fare ${km} km</p>`
     document.getElementById("laTuaEta").innerHTML = `<p>hai ${eta} anni</p>`
-    let biglietto = km * 0.21;
+    let biglietto = (km * 0.21).toFixed(2);
     console.log(biglietto)
     document.getElementById("prezzo").innerHTML = `<p>il tuo biglietto costa ${biglietto} euro</p>`
 
+    if (eta < 18) {
+        let bigliettoUnder = biglietto - (biglietto *0.20) ;
+        let bigliettoUnderRR = bigliettoUnder.toFixed(2);
+        document.getElementById("prezzoScontato").innerHTML = `<p>il prezzo finale è ${bigliettoUnderRR} euro, poichè usufruisci dello sconto pischello</p>`
+    } else if (eta > 65) {
+        let bigliettoOver = biglietto - (biglietto *0.40);
+        let bigliettoOverRR = bigliettoOver.toFixed(2);
+        document.getElementById("prezzoScontato").innerHTML = `<p>il prezzo finale è ${bigliettoOverRR} euro, poichè usufruisci dello sconto vecchiaccio</p>`
+    } else {
+        document.getElementById("prezzoScontato").innerHTML = `<p>il prezzo finale è ${biglietto} euro, poichè non ci sono sconti per te</p>`
+    }
 }
